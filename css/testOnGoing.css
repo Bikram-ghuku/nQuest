@@ -57,6 +57,8 @@ body{
     height: 50vh;
     overflow-x: hidden;
     overflow-y: auto;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
 }
 
 .btn_cont{
@@ -72,6 +74,11 @@ body{
     height: 4vh;
     width: 15vh;
     color: #ffffff;
+}
+
+.submit:disabled{
+    cursor: not-allowed;
+    background-color: #5786c7;
 }
 
 .main_area{
@@ -119,7 +126,7 @@ body{
     height: 3vh;
     outline: 1px solid #e3e3e3;
     font-size: 2vh;
-    font-weight: 500;
+    font-weight:bolder;
 }
 
 .q_area{
@@ -253,9 +260,9 @@ body{
     transform: rotate(-45deg);
     content: attr(data-watermark);
 
-    font-size: 30px;
-    opacity: 0.15;
-    line-height: 4em;
+    font-size: 20px;
+    opacity: 0.2;
+    line-height: 6em;
     letter-spacing: 2px;
 
     z-index:-1;
@@ -299,3 +306,18 @@ body{
     padding-top: 0.1vh;
 }
 
+.nav_elem{
+    border: none;
+    padding-top: 1vh;
+    font-size: 3vh;
+    text-align: center;
+    background-color: #ececec;
+    height: 9vh;
+    width: 4vw;
+    border: 1px solid #b9c0c4;
+    border-radius: 5px;
+}
+
+.nav_elem_cover{
+    padding: 5px;
+}

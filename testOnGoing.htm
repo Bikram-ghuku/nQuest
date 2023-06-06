@@ -21,18 +21,31 @@
                 var section_div = document.getElementsByClassName("sections")[0]
                 section_div.innerHTML=""
                 section.forEach((item)=>{
-                    console.log(item.id)
                     
-                    section_div.innerHTML+="<div class=\"sec_btn_cover\" ><button class=\"sec_btn\" id=\"section_"+item.id+"\" onClick=\"ques_act(\'"+item.id+"\')\">"+item.section+"</button></div>"
+                    section_div.innerHTML+="<div class=\"sec_btn_cover\" ><button class=\"sec_btn\" id=\"section_"+item.id+"\" onClick=\"ques_act(\'"+item.id+"\', \'"+x+"\')\">"+item.section+"</button></div>"
                 })
             }
 
-            function  ques_act(x){
+            function  ques_act(sect_act, grp_act){
                 var grp_btns = document.getElementsByClassName("sec_btn")
                 Array.prototype.forEach.call(grp_btns, (item)=>{
                     item.classList = "sec_btn"
                 })
-                document.getElementById("section_"+x).classList+=" current_active_group";
+                document.getElementById("section_"+sect_act).classList+=" current_active_group";
+
+                var s = sect_act.split("_")
+                sect_act_index = parseInt(s[2])-1
+                
+                qpaper = localStorage.getItem("qpaper")
+                qpaper = JSON.parse(qpaper)
+
+                num_questions = qpaper.data[grp_act].sections[sect_act_index].num_ques
+                document.getElementsByClassName("navigation")[0].innerHTML = ""
+
+                for(i=0; i<num_questions; i++){
+                    nav_elem = "<div class=\"nav_elem_cover\"><button class=\"nav_elem\">"+(i+1)+"</button></div>"
+                    document.getElementsByClassName("navigation")[0].innerHTML+=nav_elem
+                }
 
             }
 
@@ -74,6 +87,8 @@
             <div class="groups">
             </div>
             <div class="sec_time">
+                <div class="timer" style="align-items: end;"></div>
+                
             </div>
             <div class="sections">
             </div>
@@ -85,10 +100,10 @@
                 Question No. 1
             </div>
             <div class="q_area">
-                <div class="watermarked" data-watermark="230551892 "></div>
+                <div class="watermarked" data-watermark=""></div>
                 <script>        
                     Array.from(document.querySelectorAll('.watermarked')).forEach(function(el) {
-                        el.dataset.watermark = (el.dataset.watermark + '  ').repeat(10000);
+                        el.dataset.watermark = (localStorage.getItem("watermark_id") + '  ').repeat(10000);
                     });
                  </script>
                 <div class="q_text">
