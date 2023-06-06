@@ -1,0 +1,46 @@
+.q_palette{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    white-space: nowrap;
+    column-gap: 10px;
+}
+
+.navgational_pan{
+    float: right;
+    background-color: aqua;
+    height: 100%;
+    width: 20%;
+}
+
+.section{
+    height: 100%;
+}
+
+.option_a{
+    padding-top: 5%;
+    padding-left: 5%;
+}
+
+.option_b{
+    padding-top: 5%;
+    padding-left: 5%;;
+}
+
+.option_c{
+    padding-top: 5%;
+    padding-left: 5%;;
+}
+
+.option_d{
+    padding-top: 5%;
+    padding-left: 5%;
+}
+
+.user_data{
+    display: flex;
+    flex-direction: row;
+}
