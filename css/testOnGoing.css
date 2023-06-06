@@ -43,6 +43,7 @@ body{
     display: grid;
     grid-template-columns: auto auto;
     padding-left: 10px;
+    column-gap: 5px;
 }
 
 .sep_top_bot{
@@ -80,33 +81,40 @@ body{
 }
 
 .groups{
-    height: 6vh;
+    background-color: #ffffff;
+    height: 5vh;
     background-color: #eeeeee;
 }
 
 .sec_time{
+    background-color: #ffffff;
     height: 3vh;
     outline: 1px solid #e3e3e3;
 }
 
 .sections{
-    height: 6vh;
+    background-color: #ffffff;
+    height: 5vh;
     outline: 1px solid #e3e3e3;
 }
 
 .q_info{
+    background-color: #ffffff;
     height: 2vh;
     outline: 1px solid #e3e3e3;
 }
 
 .lang_sel{
-    height: 4vh;
+    height: 5vh;
     background-color: #5786c7;
 }
 
 .q_no{
-    height: 2vh;
+    background-color: #ffffff;
+    height: 3vh;
     outline: 1px solid #e3e3e3;
+    font-size: 2vh;
+    font-weight: 500;
 }
 
 .q_area{
@@ -118,6 +126,7 @@ body{
 }
 
 .nav_btns{
+    background-color: #ffffff;
     padding-left: 2vw;
     padding-top: 1vh;
     height: 5vh;
@@ -155,30 +164,41 @@ body{
 
 
 .ans{
+    text-align: center;
+    color: #ffffff;
+    font-size: 12px;
     display: inline-block;
     clip-path: polygon(40% 0, 60% 0, 100% 40%, 100% 100%, 0 100%, 0 40%);
     background-color: #77ba00;
-    width: 3vw;
-    height: 4vh;
+    width: 20px;
+    height: 20px;
 }
 
 .nans{
+    text-align: center;
+    color: #ffffff;
+    font-size: 12px;
     display: inline-block;
     clip-path: polygon(0 0, 100% 0, 100% 60%, 60% 100%, 40% 100%, 0 60%);
     background-color: #d84100;
-    width: 3vw;
-    height: 4vh;
+    width: 20px;
+    height: 20px;
 }
 
 .nvisit{
+    text-align: center;
+    font-size: 12px;
     clip-path: polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%);
     display: inline-block;
     background-color: #d5d5d5;
-    width: 3vw;
-    height: 4vh;
+    width: 20px;
+    height: 20px;
 }
 
 .mfr{
+    text-align: center;
+    color: #ffffff;
+    font-size: 12px;
     clip-path: circle(50% at 50% 50%);
     display: inline-block;
     background-color: #725298;
@@ -187,6 +207,9 @@ body{
 }
 
 .amfr{
+    text-align: center;
+    color: #ffffff;
+    font-size: 12px;
     clip-path: circle(50% at 50% 50%);
     display: inline-block;
     background-color: #725298;
@@ -197,4 +220,25 @@ body{
 .h_ele_t{
     padding-top: 5%;
     padding-left: 1%;
+}
+
+
+.watermarked::before {
+    position: fixed;
+    top: -75%;
+    left: -75%;
+
+    display: block;
+    width: 300%;
+    height: 300%;
+
+    transform: rotate(-45deg);
+    content: attr(data-watermark);
+
+    font-size: 30px;
+    opacity: 0.15;
+    line-height: 4em;
+    letter-spacing: 2px;
+
+    z-index:-1;
 }

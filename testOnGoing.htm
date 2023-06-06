@@ -16,19 +16,19 @@
             </div>
             <div class="help">
                 <div class="h_ele_t">
-                    <div class="ans"></div> Answered
+                    <div class="ans">0</div> Answered
                 </div>
                 <div class="h_ele_t">
-                    <div class="nans"></div> Not Answered
+                    <div class="nans">0</div> Not Answered
                 </div>
                 <div class="h_ele">
-                    <div class="nvisit"></div> Not Visited
+                    <div class="nvisit">0</div> Not Visited
                 </div>
                 <div class="h_ele"> 
-                    <div class="mfr"></div> Marked For review
+                    <div class="mfr">0</div> Marked For review
                 </div>
                 <div class="h_ele">
-                     <div class="amfr"></div> Answered & Marked For review
+                     <div class="amfr">0</div> Answered & Marked For review
                 </div>
             </div>
             <div class="sep_top_bot"></div>
@@ -49,9 +49,15 @@
             <div class="lang_sel">
             </div>
             <div class="q_no">
+                Question No. 1
             </div>
             <div class="q_area">
-               
+                <div class="watermarked" data-watermark="230551892 "></div>
+                <script>        
+                    Array.from(document.querySelectorAll('.watermarked')).forEach(function(el) {
+                        el.dataset.watermark = (el.dataset.watermark + '  ').repeat(10000);
+                    });
+                 </script>
                 
             </div>
             <div class="nav_btns">
