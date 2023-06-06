@@ -19,7 +19,7 @@ body{
 }
 
 .profile{
-    height: 15vh;
+    height: 14vh;
     width: 100%;
     background-color:#ffffff;
     outline:2px solid #e3e3e3;
@@ -27,16 +27,22 @@ body{
 
 .images{
     padding-top: 1vh;
-    height: 14vh;
-    width: 9vw;
+    height: 12vh;
+    width: 7vw;
     padding-left: 1vw;
 }
 
 .help{
-    height: 20vh;
+    letter-spacing: 0.02px;
+    overflow-x: hidden;
+    font-size: 2vh;
+    height: 21vh;
     width:100%;
     background-color: #ffffff;
     outline:2px solid #e3e3e3;
+    display: grid;
+    grid-template-columns: auto auto;
+    padding-left: 10px;
 }
 
 .sep_top_bot{
@@ -69,7 +75,7 @@ body{
 
 .main_area{
     height: 96vh;
-    width: 79.9%;
+    width: 79.8%;
     
 }
 
@@ -144,4 +150,51 @@ body{
     border: none;
     outline: 1px solid #e3e3e3;
     color: #636363;
+}
+
+
+
+.ans{
+    display: inline-block;
+    clip-path: polygon(40% 0, 60% 0, 100% 40%, 100% 100%, 0 100%, 0 40%);
+    background-color: #77ba00;
+    width: 3vw;
+    height: 4vh;
+}
+
+.nans{
+    display: inline-block;
+    clip-path: polygon(0 0, 100% 0, 100% 60%, 60% 100%, 40% 100%, 0 60%);
+    background-color: #d84100;
+    width: 3vw;
+    height: 4vh;
+}
+
+.nvisit{
+    clip-path: polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%);
+    display: inline-block;
+    background-color: #d5d5d5;
+    width: 3vw;
+    height: 4vh;
+}
+
+.mfr{
+    clip-path: circle(50% at 50% 50%);
+    display: inline-block;
+    background-color: #725298;
+    width: 20px;
+    height: 20px;
+}
+
+.amfr{
+    clip-path: circle(50% at 50% 50%);
+    display: inline-block;
+    background-color: #725298;
+    width: 20px;
+    height: 20px;
+}
+
+.h_ele_t{
+    padding-top: 5%;
+    padding-left: 1%;
 }
