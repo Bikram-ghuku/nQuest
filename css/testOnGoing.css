@@ -84,6 +84,8 @@ body{
     background-color: #ffffff;
     height: 5vh;
     background-color: #eeeeee;
+    display: flex;
+    align-items: center;
 }
 
 .sec_time{
@@ -96,6 +98,9 @@ body{
     background-color: #ffffff;
     height: 5vh;
     outline: 1px solid #e3e3e3;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
 }
 
 .q_info{
@@ -154,12 +159,25 @@ body{
     color: #636363;
 }
 
+.review:hover{
+    background-color: #3f97f6;
+    color: #ffffff;
+    outline: 1px solid #e3e3e3;
+}
+
 .clr_res{
     background-color: #ffffff;
     border: none;
     outline: 1px solid #e3e3e3;
     color: #636363;
 }
+
+.clr_res:hover{
+    background-color: #3f97f6;
+    color: #ffffff;
+    outline: 1px solid #e3e3e3;
+}
+
 
 
 
@@ -242,3 +260,42 @@ body{
 
     z-index:-1;
 }
+
+.grp_btn_cover{
+    height: 4vh;
+    padding-top: 0.1vh;
+    padding-left: 2vw;
+}
+
+.grp_btn{
+    width: auto;
+    height: 4vh;
+    font-size: 10px;
+    padding-left: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    color: #000000;
+}
+
+.sec_btn{
+    width: auto;
+    border: none;
+    font-size: 10px;
+    height: 100%;
+    outline: 1px solid #e3e3e3;
+    background-color: white;
+    padding: 5px;
+
+}
+
+
+.current_active_group{
+    background-color: #3f97f6;
+    color: white;
+}
+
+.sec_btn_cover{
+    padding-top: 0.1vh;
+}
+

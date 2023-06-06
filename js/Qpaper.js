@@ -2,7 +2,7 @@ const qpaper= {
     id: "test_pap_1",
     data:
     [{
-        group: "Physics",
+        group: "Physics Quiz Main",
         gid: "0",
         sections:[{
             section: "Physics Section 1",
@@ -18,7 +18,7 @@ const qpaper= {
 
     },
     {
-        group: "Chemistry",
+        group: "Chemistry Quiz Main",
         gid: "1",
         sections:[{
             section: "Chemistry Section 1",
@@ -36,3 +36,5 @@ const qpaper= {
     }
 ]
 }
+
+export default qpaper;
