@@ -1,5 +1,6 @@
 const qpaper= {
 
+    user_id: "23045662",
     lfq: true,
     timer: 180,
     id: "test_pap_1",
@@ -25,7 +26,7 @@ const qpaper= {
             num_ques: 7,
             q_type: "integer",
             num_opt: 10,
-            score: [3, -1],
+            score: [3, 0],
             attempted: []
 
         },

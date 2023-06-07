@@ -3,9 +3,15 @@
     <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <title>Test On Going</title>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <link rel="stylesheet" type="text/css" href="css/testOnGoing.css">
         <script type="module" src="js/testOnGoing.js"></script>
         <script>
+            // document.onkeydown = function (e) {
+            //     return false;
+            // }
+
             function  section_act(x){
                 var grp_btns = document.getElementsByClassName("grp_btn")
                 Array.prototype.forEach.call(grp_btns, (item)=>{
@@ -45,7 +51,9 @@
                 document.getElementsByClassName("navigation")[0].innerHTML = ""
                 document.getElementsByClassName("sep_top_bot")[0].innerHTML = section_data.section
                 document.getElementsByClassName("q_type")[0].innerHTML = "Question Type: "+section_data.q_type
-                document.getElementsByClassName("q_scoring")[0].innerHTML = "Marks For Correct Answer: <font style=\"color: green;\">"+section_data.score[0]+"</font> | Marks For Incorrect: <font style=\"color: red;\">"+section_data.score[1]+"</font"
+                document.getElementsByClassName("q_scoring")[0].innerHTML = "Marks For Correct Answer: <font style=\"color: green;\">"+section_data.score[0]+"</font> | Marks For Incorrect: <font style=\"color: red;\">"+section_data.score[1]+"</font>"
+                document.getElementsByClassName("nvisit")[0].innerHTML = num_questions
+
 
                 for(i=0; i<num_questions; i++){
                     nav_elem = "<div class=\"nav_elem_cover\"><button class=\"nav_elem\" onClick=\"showQuestion('"
@@ -75,8 +83,9 @@
 
                 var response_divs = ""
                 
+                var num_opt = parseInt(qpaper.data[act_grp].sections[act_sec].num_opt)
                 if(qpaper.data[act_grp].sections[act_sec].q_type=="SMCQ"){
-                    for(i=0; i<parseInt(qpaper.data[act_grp].sections[act_sec].num_opt); i++){
+                    for(i=0; i<num_opt; i++){
                         response_divs+="<div class=\"opt_divs\"><input type=\"radio\" name=\"question_"
                             +q_no+
                             "\" id=\"opt_"
@@ -87,7 +96,7 @@
                     }
                 }
                 else if(qpaper.data[act_grp].sections[act_sec].q_type=="MMCQ"){
-                    for(i=0; i<parseInt(qpaper.data[act_grp].sections[act_sec].num_opt); i++){
+                    for(i=0; i<num_opt; i++){
                         response_divs+="<div class=\"opt_divs\"><input type=\"checkbox\" name=\"question_"
                             +q_no+
                             "\" id=\"opt_"
@@ -96,6 +105,13 @@
                             +"option "+i+" of question "+q_no+
                             "</div>"
                     }
+                }
+                else if(qpaper.data[act_grp].sections[act_sec].q_type=="integer"){
+                        response_divs+="<div class=\"opt_divs\"><input type=\"number\" min=\"0\" max=\""+(num_opt-1)+"\" name=\"question_"
+                            +q_no+
+                            "\" id=\"opt_"
+                            +(i+1)+
+                            "\"></div>"
                 }
 
                 document.getElementsByClassName("clr_res")[0].onclick = () => {
@@ -141,7 +157,8 @@
         </script>
     </head>
 
-    <body onload="run_timer()">
+    <body onload="run_timer()" > 
+        <!-- oncontextmenu="return false;" -->
         <div class="top_black"></div>
         <div class="right">
             <div class="profile">
@@ -162,7 +179,7 @@
                     <div class="mfr">0</div> Marked For review
                 </div>
                 <div class="h_ele">
-                     <div class="amfr">0</div> Answered & Marked For review
+                    <div class="mfr">0</div> Answered & Marked For review
                 </div>
             </div>
             <div class="sep_top_bot"></div>
@@ -192,9 +209,11 @@
             </div>
             <div class="q_area">
                 <div class="watermarked" data-watermark=""></div>
-                <script>        
+                <script> 
+                    qpaper = localStorage.getItem("qpaper")
+                    qpaper = JSON.parse(qpaper)    
                     Array.from(document.querySelectorAll('.watermarked')).forEach(function(el) {
-                        el.dataset.watermark = (localStorage.getItem("watermark_id") + '  ').repeat(10000);
+                        el.dataset.watermark = (qpaper.user_id+ '  ').repeat(10000);
                     });
                  </script>
                 <div class="question"></div>

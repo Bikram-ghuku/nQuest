@@ -140,10 +140,18 @@ body{
 }
 
 .q_area{
+    padding-top: 15px;
+    padding-left: 15px;
     height: 67.5vh;
     overflow-x: hidden;
     overflow-y: auto;
-    font-size: 50px;
+    font-size: 15px;
+    font-weight: 500;
+    -moz-user-select: none;  
+    -webkit-user-select: none;  
+    -ms-user-select: none;  
+    -o-user-select: none;  
+    user-select: none;
 
 }
 
@@ -245,9 +253,9 @@ body{
     text-align: center;
     color: #ffffff;
     font-size: 12px;
-    clip-path: circle(50% at 50% 50%);
+    clip-path: circle(20% at 80% 80%);
     display: inline-block;
-    background-color: #725298;
+    background-color: #77ba00;
     width: 20px;
     height: 20px;
 }
@@ -270,9 +278,9 @@ body{
     transform: rotate(-45deg);
     content: attr(data-watermark);
 
-    font-size: 20px;
+    font-size: 35px;
     opacity: 0.2;
-    line-height: 6em;
+    line-height: 4em;
     letter-spacing: 2px;
 
     z-index:-1;
@@ -322,7 +330,7 @@ body{
     font-size: 3vh;
     text-align: center;
     background-color: #ececec;
-    height: 9vh;
+    height: 7vh;
     width: 4vw;
     border: 1px solid #b9c0c4;
     border-radius: 5px;
@@ -343,6 +351,34 @@ body{
 }
 
 .opt_divs{
-    font-size: 50px;
     padding: 15px;
+}
+
+.na_button{
+    background-color: #d84100;
+    color: white;
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 60% 100%, 40% 100%, 0 50%);
+}
+
+.a_button{
+    background-color: #77ba00;
+    color: white;
+    clip-path: polygon(40% 0, 60% 0, 100% 40%, 100% 100%, 0 100%, 0 40%);
+}
+
+.mfr_button{
+    background-color: #725298;
+    color: white;
+    clip-path: circle(45% at 50% 50%);
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    appearance: none;
+    -moz-appearance: textfield;
+    margin: 0;
+}
+
+input[type=number]{
+    width: 15%;
 }
