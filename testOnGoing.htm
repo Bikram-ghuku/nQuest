@@ -39,21 +39,76 @@
                 qpaper = localStorage.getItem("qpaper")
                 qpaper = JSON.parse(qpaper)
 
+                section_data = qpaper.data[grp_act].sections[sect_act_index]
+
                 num_questions = qpaper.data[grp_act].sections[sect_act_index].num_ques
                 document.getElementsByClassName("navigation")[0].innerHTML = ""
+                document.getElementsByClassName("sep_top_bot")[0].innerHTML = section_data.section
+                document.getElementsByClassName("q_type")[0].innerHTML = "Question Type: "+section_data.q_type
+                document.getElementsByClassName("q_scoring")[0].innerHTML = "Marks For Correct Answer: <font style=\"color: green;\">"+section_data.score[0]+"</font> | Marks For Incorrect: <font style=\"color: red;\">"+section_data.score[1]+"</font"
 
                 for(i=0; i<num_questions; i++){
-                    nav_elem = "<div class=\"nav_elem_cover\"><button class=\"nav_elem\">"+(i+1)+"</button></div>"
+                    nav_elem = "<div class=\"nav_elem_cover\"><button class=\"nav_elem\" onClick=\"showQuestion('"
+                        +grp_act+
+                        "','"
+                        +sect_act_index+
+                        "','"
+                        +i+
+                        "')\">"
+                        +(i+1)+
+                        "</button></div>"
                     document.getElementsByClassName("navigation")[0].innerHTML+=nav_elem
                 }
 
             }
 
+            function showQuestion(act_grp, act_sec, q_no){
+                qpaper = localStorage.getItem("qpaper")
+                qpaper = JSON.parse(qpaper)
+
+                document.getElementsByClassName("q_no")[0].innerHTML = "Question No. "+(parseInt(q_no)+1)
+                document.getElementsByClassName("question")[0].innerHTML = "Question from: "
+                +qpaper.data[act_grp].group+
+                " Of section: "
+                +qpaper.data[act_grp].sections[act_sec].section+
+                " With Question number: "+q_no
+
+            }
+
+            function run_timer(){
+
+                qpaper = localStorage.getItem("qpaper")
+                qpaper = JSON.parse(qpaper)
+                if(qpaper.lfq){
+                    section_act(0)
+                    ques_act(qpaper.data[0].sections[0].id ,0)
+                    showQuestion(0, 0, 0)
+                }
+
+                var end = new Date().getTime()+parseInt(qpaper.timer)*1000
+
+                setInterval(()=>{
+                    var now = new Date().getTime()
+                    var distance = end - now
+                    distance = Math.floor(distance/1000)
+                    minutes = Math.floor(distance/60)
+                    seconds = Math.floor(distance%60)
+                    if(distance>30){
+                        document.getElementsByClassName("Timer")[0].innerHTML = "Time Left: "+minutes+":"+seconds
+                    }
+                    else{
+                        document.getElementsByClassName("Timer")[0].innerHTML = "Time Left: <font style=\"color:red;\">"+minutes+":"+seconds
+                    }
+
+                }, 1000)
+            }
+            
+
 
         </script>
     </head>
 
-    <body>
+    <body onload="run_timer()">
         <div class="top_black"></div>
         <div class="right">
             <div class="profile">
@@ -87,17 +142,20 @@
             <div class="groups">
             </div>
             <div class="sec_time">
-                <div class="timer" style="align-items: end;"></div>
+                <font style="font-size: 2vh; font-weight: 600;">Sections</font>
+                <div class="timer" style="height:2vh; font-size: 2vh; float: right; font-weight: bolder;">Time Left: </div>
                 
             </div>
             <div class="sections">
             </div>
             <div class="q_info">
+                <div class="q_type"></div>
+                <div class="q_scoring"></div>
             </div>
             <div class="lang_sel">
             </div>
             <div class="q_no">
-                Question No. 1
+                
             </div>
             <div class="q_area">
                 <div class="watermarked" data-watermark=""></div>
@@ -106,9 +164,8 @@
                         el.dataset.watermark = (localStorage.getItem("watermark_id") + '  ').repeat(10000);
                     });
                  </script>
-                <div class="q_text">
-
-                </div>
+                <div class="question"></div>
+                <div class="response"></div>
                 
             </div>
             <div class="nav_btns">
