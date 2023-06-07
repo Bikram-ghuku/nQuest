@@ -71,7 +71,40 @@
                 +qpaper.data[act_grp].group+
                 " Of section: "
                 +qpaper.data[act_grp].sections[act_sec].section+
-                " With Question number: "+q_no
+                " With Question number: "+(parseInt(q_no)+1)
+
+                var response_divs = ""
+                
+                if(qpaper.data[act_grp].sections[act_sec].q_type=="SMCQ"){
+                    for(i=0; i<parseInt(qpaper.data[act_grp].sections[act_sec].num_opt); i++){
+                        response_divs+="<div class=\"opt_divs\"><input type=\"radio\" name=\"question_"
+                            +q_no+
+                            "\" id=\"opt_"
+                            +(i+1)+
+                            "\">"
+                            +"option "+(i+1)+" of question "+(parseInt(q_no)+1)+
+                            "</div>"
+                    }
+                }
+                else if(qpaper.data[act_grp].sections[act_sec].q_type=="MMCQ"){
+                    for(i=0; i<parseInt(qpaper.data[act_grp].sections[act_sec].num_opt); i++){
+                        response_divs+="<div class=\"opt_divs\"><input type=\"checkbox\" name=\"question_"
+                            +q_no+
+                            "\" id=\"opt_"
+                            +(i+1)+
+                            "\">"
+                            +"option "+i+" of question "+q_no+
+                            "</div>"
+                    }
+                }
+
+                document.getElementsByClassName("clr_res")[0].onclick = () => {
+                    for(i=0; i<qpaper.data[act_grp].sections[act_sec].num_opt; i++){
+                        document.getElementById("opt_"+(i+1)).checked = false
+                    }
+
+                }
+                document.getElementsByClassName("response")[0].innerHTML = response_divs
 
             }
 

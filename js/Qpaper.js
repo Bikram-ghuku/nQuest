@@ -14,6 +14,7 @@ const qpaper= {
             id: "py_sec_1",
             num_ques: 20,
             q_type: "SMCQ",
+            num_opt: 4,
             score: [3, -1],
             attempted:[]
         },
@@ -23,6 +24,7 @@ const qpaper= {
             id: "py_sec_2",
             num_ques: 7,
             q_type: "integer",
+            num_opt: 10,
             score: [3, -1],
             attempted: []
 
@@ -33,6 +35,7 @@ const qpaper= {
             id: "py_sec_3",
             num_ques: 3,
             q_type: "MMCQ",
+            num_opt: 4,
             score:[4, -2],
             attempted: []
         }]
@@ -47,6 +50,7 @@ const qpaper= {
             id: "chem_sec_1",
             num_ques: 20,
             q_type: "SMCQ",
+            num_opt: 4,
             score: [3, -1],
             attempted: []
         },
@@ -56,6 +60,7 @@ const qpaper= {
             id: "chem_sec_2",
             num_ques: 7,
             q_type: "integer",
+            num_opt: 4,
             score: [3, -1],
             attempted: []
 
@@ -66,6 +71,7 @@ const qpaper= {
             id: "chem_sec_3",
             num_ques: 3,
             q_type: "MMCQ",
+            num_opt: 4,
             score: [4, -1],
             attempted: []
         }]
