@@ -63,13 +63,13 @@
 
             function update_nav(grp_act, sect_act_index){
 
-                console.log("Nav update called")
-
                 qpaper = localStorage.getItem("qpaper")
                 qpaper = JSON.parse(qpaper)
 
                 document.getElementsByClassName("navigation")[0].innerHTML = ""
+
                 num_questions = qpaper.data[grp_act].sections[sect_act_index].num_ques
+                
                 for(i=0; i<num_questions; i++){
                     x=""
                     if(section_data.viewed.includes(i)){
@@ -78,7 +78,10 @@
                     else if(section_data.answered.includes(i)){
                         x="a_button"
                     }
-                    nav_elem = "<div class=\"nav_elem_cover\"><button class=\"nav_elem "+x+"\" onClick=\"showQuestion('"
+                    else if(section_data.mfr.includes(i) || section_data.amfr.includes(i)){
+                        x="mfr_button"
+                    }
+                    nav_elem = "<div class=\"nav_elem_cover\"><button class=\"nav_elem "+x+"\" id=\"nav_btn_"+grp_act+sect_act_index+i+"\" onClick=\"showQuestion('"
                         +grp_act+
                         "','"
                         +sect_act_index+
@@ -98,9 +101,14 @@
 
                 qpaper = localStorage.getItem("qpaper")
                 qpaper = JSON.parse(qpaper)
-
-                if(!qpaper.data[act_grp].sections[act_sec].viewed.includes(parseInt(q_no))){
+                con_check_1 = !qpaper.data[act_grp].sections[act_sec].viewed.includes(parseInt(q_no))
+                con_check_2 =  !qpaper.data[act_grp].sections[act_sec].answered.includes(parseInt(q_no))
+                con_check_3 = !qpaper.data[act_grp].sections[act_sec].mfr.includes(parseInt(q_no))
+                con_check_4 = !qpaper.data[act_grp].sections[act_sec].amfr.includes(parseInt(q_no))
+                if(con_check_1 && con_check_2 && con_check_3 && con_check_4){
                     qpaper.data[act_grp].sections[act_sec].viewed.push(parseInt(q_no))
+                    document.getElementById("nav_btn_"+act_grp+act_sec+q_no).classList = "nav_elem "
+                    document.getElementById("nav_btn_"+act_grp+act_sec+q_no).classList+="na_button "
                 }
 
                 localStorage.setItem("qpaper", JSON.stringify(qpaper))
@@ -117,6 +125,9 @@
                 document.getElementsByClassName("nans")[0].innerHTML = num_viewed
                 document.getElementsByClassName("ans")[0].innerHTML = num_ans
                 document.getElementsByClassName("nvisit")[0].innerHTML = num_questions - num_ans - num_viewed - num_mfr - num_amfr
+                document.getElementsByClassName("mfr")[0].innerHTML = num_mfr
+                document.getElementsByClassName("amfr")[0].innerHTML = num_amfr
+                
 
                 document.getElementsByClassName("q_no")[0].innerHTML = "Question No. "+(parseInt(q_no)+1)
                 document.getElementsByClassName("question")[0].innerHTML = "Question from: "
@@ -158,15 +169,74 @@
                             "\"></div>"
                 }
 
+                // handle click of cleaer response
                 document.getElementsByClassName("clr_res")[0].onclick = () => {
                     for(i=0; i<qpaper.data[act_grp].sections[act_sec].num_opt; i++){
                         document.getElementById("opt_"+(i+1)).checked = false
                     }
 
-                }
-                document.getElementsByClassName("response")[0].innerHTML = response_divs
-                update_nav(act_grp, act_sec)
+                    x = qpaper.data[act_grp].sections[act_sec].answered
 
+                    if(x.indexOf(parseInt(q_no))>-1){
+                        x.splice(x.indexOf(parseInt(q_no)), 1)
+                        if(!qpaper.data[act_grp].sections[act_sec].viewed.includes(parseInt(q_no))){
+                            qpaper.data[act_grp].sections[act_sec].viewed.push(parseInt(q_no))
+                            document.getElementById("nav_btn_"+act_grp+act_sec+q_no).classList = "nav_elem "
+                            document.getElementById("nav_btn_"+act_grp+act_sec+q_no).classList+="na_button "
+                        }
+                        localStorage.setItem("qpaper", JSON.stringify(qpaper))
+                    }
+
+                }
+
+                document.getElementsByClassName("response")[0].innerHTML = response_divs
+                
+
+                //Handle click of save and next
+                document.getElementsByClassName("next")[0].onclick = () => {
+                    
+                    x = qpaper.data[act_grp].sections[act_sec].viewed
+
+                    if(x.indexOf(parseInt(q_no))>-1){
+                        x.splice(x.indexOf(parseInt(q_no)), 1)
+                        if(!qpaper.data[act_grp].sections[act_sec].answered.includes(parseInt(q_no))){
+                            qpaper.data[act_grp].sections[act_sec].answered.push(parseInt(q_no))
+                            document.getElementById("nav_btn_"+act_grp+act_sec+q_no).classList = "nav_elem "
+                            document.getElementById("nav_btn_"+act_grp+act_sec+q_no).classList+="a_button "
+                        }
+                        localStorage.setItem("qpaper", JSON.stringify(qpaper))
+                    }
+                    
+                    if(qpaper.data[act_grp].sections[act_sec].num_ques>parseInt(q_no+1)){
+                        showQuestion(act_grp, act_sec, q_no+1)
+                    }
+                }
+
+
+                //handle click of marked for review
+                document.getElementsByClassName("review")[0].onclick = () => {
+                    
+                    x = qpaper.data[act_grp].sections[act_sec]
+
+                    if(x.viewed.indexOf(parseInt(q_no))>-1){
+                        x.viewed.splice(x.viewed.indexOf(parseInt(q_no)), 1)
+                        if(!qpaper.data[act_grp].sections[act_sec].mfr.includes(parseInt(q_no))){
+                            qpaper.data[act_grp].sections[act_sec].mfr.push(parseInt(q_no))
+                            document.getElementById("nav_btn_"+act_grp+act_sec+q_no).classList = "nav_elem "
+                            document.getElementById("nav_btn_"+act_grp+act_sec+q_no).classList+="mfr_button "
+                        }
+                        
+                    }if(x.answered.indexOf(parseInt(q_no))>-1){
+                        x.answered.splice(x.answered.indexOf(parseInt(q_no)), 1)
+                        if(!qpaper.data[act_grp].sections[act_sec].amfr.includes(parseInt(q_no))){
+                            qpaper.data[act_grp].sections[act_sec].amfr.push(parseInt(q_no))
+                            document.getElementById("nav_btn_"+act_grp+act_sec+q_no).classList = "nav_elem "
+                            document.getElementById("nav_btn_"+act_grp+act_sec+q_no).classList+="mfr_button "
+                        }
+                    }
+                    
+                    localStorage.setItem("qpaper", JSON.stringify(qpaper))
+                }
             }
 
             function run_timer(){
@@ -185,7 +255,7 @@
                     distance = Math.floor(distance/1000)
                     minutes = Math.floor(distance/60)
                     seconds = Math.floor(distance%60)
-                    if(distance>30){
+                    if(distance>60){
                         document.getElementsByClassName("Timer")[0].innerHTML = "Time Left: "+minutes+":"+seconds
                     }
                     else{
@@ -194,6 +264,7 @@
 
                 }, 1000)
             }
+            
             
 
 
@@ -222,7 +293,7 @@
                     <div class="mfr">0</div> Marked For review
                 </div>
                 <div class="h_ele">
-                    <div class="mfr">0</div> Answered & Marked For review
+                    <div class="amfr">0</div> Answered & Marked For review
                 </div>
             </div>
             <div class="sep_top_bot"></div>

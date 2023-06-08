@@ -253,9 +253,9 @@ body{
     text-align: center;
     color: #ffffff;
     font-size: 12px;
-    clip-path: circle(20% at 80% 80%);
+    clip-path: circle(50% at 50% 50%);
     display: inline-block;
-    background-color: #77ba00;
+    background-color: #725298;
     width: 20px;
     height: 20px;
 }
