@@ -142,10 +142,10 @@
                 if(qpaper.data[act_grp].sections[act_sec].q_type=="SMCQ"){
                     for(i=0; i<num_opt; i++){
                         response_divs+="<div class=\"opt_divs\"><input type=\"radio\" name=\"question_"
-                            +q_no+
+                            +act_grp+"_"+act_sec+"_"+q_no+
                             "\" id=\"opt_"
                             +(i+1)+
-                            "\">"
+                            "\" required>"
                             +"option "+(i+1)+" of question "+(parseInt(q_no)+1)+
                             "</div>"
                     }
@@ -153,20 +153,18 @@
                 else if(qpaper.data[act_grp].sections[act_sec].q_type=="MMCQ"){
                     for(i=0; i<num_opt; i++){
                         response_divs+="<div class=\"opt_divs\"><input type=\"checkbox\" name=\"question_"
-                            +q_no+
+                            +act_grp+"_"+act_sec+"_"+q_no+
                             "\" id=\"opt_"
                             +(i+1)+
-                            "\">"
+                            "\" required>"
                             +"option "+i+" of question "+q_no+
                             "</div>"
                     }
                 }
                 else if(qpaper.data[act_grp].sections[act_sec].q_type=="integer"){
                         response_divs+="<div class=\"opt_divs\"><input type=\"number\" min=\"0\" max=\""+(num_opt-1)+"\" name=\"question_"
-                            +q_no+
-                            "\" id=\"opt_"
-                            +(i+1)+
-                            "\"></div>"
+                            +act_grp+"_"+act_sec+"_"+q_no+
+                            "\" required></div>"
                 }
 
                 // handle click of cleaer response
@@ -197,18 +195,43 @@
                     
                     x = qpaper.data[act_grp].sections[act_sec].viewed
 
-                    if(x.indexOf(parseInt(q_no))>-1){
-                        x.splice(x.indexOf(parseInt(q_no)), 1)
-                        if(!qpaper.data[act_grp].sections[act_sec].answered.includes(parseInt(q_no))){
-                            qpaper.data[act_grp].sections[act_sec].answered.push(parseInt(q_no))
-                            document.getElementById("nav_btn_"+act_grp+act_sec+q_no).classList = "nav_elem "
-                            document.getElementById("nav_btn_"+act_grp+act_sec+q_no).classList+="a_button "
+                    var ele = document.getElementsByName("question_"+act_grp+"_"+act_sec+"_"+q_no)
+                    var resp = ""
+                    var checked = false
+                    for(i=0; i<ele.length; i++){
+                        if(ele[i].checked){
+                            resp+=ele[i].id
+                            checked = true
                         }
-                        localStorage.setItem("qpaper", JSON.stringify(qpaper))
                     }
                     
-                    if(qpaper.data[act_grp].sections[act_sec].num_ques>parseInt(q_no+1)){
-                        showQuestion(act_grp, act_sec, q_no+1)
+
+                    if(checked){
+                        var resp_store = JSON.parse(localStorage.getItem("response"))
+                        var data = new Object()
+                        data.qpaper_id = qpaper.id
+                        data.group = qpaper.data[act_grp].id
+                        data.section = qpaper.data[act_grp].sections[act_sec].id
+                        data.question = document.getElementsByClassName("question")[0].innerHTML
+                        data.response = resp
+                        if(!resp_store.includes(data)){
+                            resp_store.push(data)
+                            localStorage.setItem("response", JSON.stringify(resp_store))
+                        }
+                        
+                        if(x.indexOf(parseInt(q_no))>-1){
+                            x.splice(x.indexOf(parseInt(q_no)), 1)
+                            if(!qpaper.data[act_grp].sections[act_sec].answered.includes(parseInt(q_no))){
+                                qpaper.data[act_grp].sections[act_sec].answered.push(parseInt(q_no))
+                                document.getElementById("nav_btn_"+act_grp+act_sec+q_no).classList = "nav_elem "
+                                document.getElementById("nav_btn_"+act_grp+act_sec+q_no).classList+="a_button "
+                            }
+                            localStorage.setItem("qpaper", JSON.stringify(qpaper))
+                        }
+                    }
+                    if(parseInt(qpaper.data[act_grp].sections[act_sec].num_ques)>parseInt(q_no+1)){
+                        showQuestion(act_grp, act_sec, parseInt(q_no+1))
+                        
                     }
                 }
 

@@ -4,8 +4,8 @@ import qpaper from "./Qpaper.js";
 
 
 var groups = qpaper.data
-localStorage.setItem("watermark_id", "707007746")
-localStorage.setItem("response", "{}")
+localStorage.setItem("watermark_id", "Bikram Ghuku")
+localStorage.setItem("response", "[]")
 localStorage.setItem("qpaper", JSON.stringify(qpaper))
 groups.forEach((item)=>{
     
