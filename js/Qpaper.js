@@ -8,7 +8,6 @@ const qpaper= {
     [{
         group: "Physics Quiz Main",
         gid: "0",
-        attempted: [],
         sections:[{
             section_info: 90000001,
             section: "Physics Section 1",
@@ -17,7 +16,10 @@ const qpaper= {
             q_type: "SMCQ",
             num_opt: 4,
             score: [3, -1],
-            attempted:[]
+            answered:[],
+            viewed: [],
+            mfr:[],
+            amfr: []
         },
         {
             section_info: 90000002,
@@ -27,7 +29,10 @@ const qpaper= {
             q_type: "integer",
             num_opt: 10,
             score: [3, 0],
-            attempted: []
+            answered: [],
+            viewed: [],
+            mfr:[],
+            amfr: []
 
         },
         {
@@ -38,7 +43,10 @@ const qpaper= {
             q_type: "MMCQ",
             num_opt: 4,
             score:[4, -2],
-            attempted: []
+            answered: [],
+            viewed: [],
+            mfr:[],
+            amfr: []
         }]
 
     },
@@ -53,7 +61,10 @@ const qpaper= {
             q_type: "SMCQ",
             num_opt: 4,
             score: [3, -1],
-            attempted: []
+            answered: [],
+            viewed: [],
+            mfr:[],
+            amfr: []
         },
         {   
             section_info: 90000002,
@@ -63,7 +74,10 @@ const qpaper= {
             q_type: "integer",
             num_opt: 4,
             score: [3, -1],
-            attempted: []
+            answered: [],
+            viewed: [],
+            mfr:[],
+            amfr: []
 
         },
         {   
@@ -74,7 +88,10 @@ const qpaper= {
             q_type: "MMCQ",
             num_opt: 4,
             score: [4, -1],
-            attempted: []
+            answered: [],
+            viewed: [],
+            mfr:[],
+            amfr: []
         }]
 
 
