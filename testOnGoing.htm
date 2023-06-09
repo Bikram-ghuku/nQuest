@@ -78,8 +78,11 @@
                     else if(section_data.answered.includes(i)){
                         x="a_button"
                     }
-                    else if(section_data.mfr.includes(i) || section_data.amfr.includes(i)){
+                    else if(section_data.mfr.includes(i)) {
                         x="mfr_button"
+                    }
+                    else if(section_data.amfr.includes(i)){
+                        x="amfr_button"
                     }
                     nav_elem = "<div class=\"nav_elem_cover\"><button class=\"nav_elem "+x+"\" id=\"nav_btn_"+grp_act+sect_act_index+i+"\" onClick=\"showQuestion('"
                         +grp_act+
@@ -197,27 +200,40 @@
 
                     var ele = document.getElementsByName("question_"+act_grp+"_"+act_sec+"_"+q_no)
                     var resp = ""
-                    var checked = false
-                    for(i=0; i<ele.length; i++){
-                        if(ele[i].checked){
-                            resp+=ele[i].id
-                            checked = true
+                    if(ele[0].type=="radio"||ele[0].type=="checkbox"){
+                        var checked = false
+                        for(i=0; i<ele.length; i++){
+                            if(ele[i].checked){
+                                resp+=ele[i].id+", "
+                                checked = true
+                            }
                         }
                     }
-                    
+                    else{
+                        resp = ele[0].value
+                        checked = true
+                    }
 
                     if(checked){
                         var resp_store = JSON.parse(localStorage.getItem("response"))
                         var data = new Object()
-                        data.qpaper_id = qpaper.id
-                        data.group = qpaper.data[act_grp].id
-                        data.section = qpaper.data[act_grp].sections[act_sec].id
-                        data.question = document.getElementsByClassName("question")[0].innerHTML
-                        data.response = resp
-                        if(!resp_store.includes(data)){
+                        data.id = act_grp+"_"+act_sec+"_"+q_no
+                        data.value = resp
+                        if(resp_store.length!=0){
+                            for(i=0; i<resp_store.length; i++){
+                                if(resp_store[i].id!=act_grp+"_"+act_sec+"_"+q_no){
+                                    resp_store.push(data)
+                                    break
+                                }
+                                else{
+                                    resp_store[i].value = resp
+                                    break
+                                }
+                            }
+                        }else{
                             resp_store.push(data)
-                            localStorage.setItem("response", JSON.stringify(resp_store))
                         }
+                        localStorage.setItem("response", JSON.stringify(resp_store))
                         
                         if(x.indexOf(parseInt(q_no))>-1){
                             x.splice(x.indexOf(parseInt(q_no)), 1)
@@ -229,8 +245,8 @@
                             localStorage.setItem("qpaper", JSON.stringify(qpaper))
                         }
                     }
-                    if(parseInt(qpaper.data[act_grp].sections[act_sec].num_ques)>parseInt(q_no+1)){
-                        showQuestion(act_grp, act_sec, parseInt(q_no+1))
+                    if(parseInt(qpaper.data[act_grp].sections[act_sec].num_ques)>parseInt(q_no)+1){
+                        showQuestion(act_grp, act_sec, parseInt(q_no)+1)
                         
                     }
                 }
@@ -254,11 +270,16 @@
                         if(!qpaper.data[act_grp].sections[act_sec].amfr.includes(parseInt(q_no))){
                             qpaper.data[act_grp].sections[act_sec].amfr.push(parseInt(q_no))
                             document.getElementById("nav_btn_"+act_grp+act_sec+q_no).classList = "nav_elem "
-                            document.getElementById("nav_btn_"+act_grp+act_sec+q_no).classList+="mfr_button "
+                            document.getElementById("nav_btn_"+act_grp+act_sec+q_no).classList+="amfr_button "
                         }
                     }
                     
                     localStorage.setItem("qpaper", JSON.stringify(qpaper))
+
+                    if(parseInt(qpaper.data[act_grp].sections[act_sec].num_ques)>parseInt(q_no)+1){
+                        showQuestion(act_grp, act_sec, parseInt(q_no)+1)
+                        
+                    }
                 }
             }
 

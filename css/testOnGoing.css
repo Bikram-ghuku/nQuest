@@ -253,9 +253,9 @@ body{
     text-align: center;
     color: #ffffff;
     font-size: 12px;
-    clip-path: circle(50% at 50% 50%);
-    display: inline-block;
-    background-color: #725298;
+    background-image: url(../images/amfr.png);
+    background-size: 20px;
+    background-repeat: no-repeat;
     width: 20px;
     height: 20px;
 }
@@ -370,6 +370,16 @@ body{
     background-color: #725298;
     color: white;
     clip-path: circle(45% at 50% 50%);
+}
+
+.amfr_button{
+    background-color: #e7f6fd;
+    background-image: url(../images/amfr_btn.png);
+    background-size: 50px;
+    clip-path: circle(45% at 50% 50%);
+    /* background-position: -2px -5px; */
+    background-repeat: no-repeat;
+    color: white;
 }
 
 input[type=number]::-webkit-outer-spin-button,
