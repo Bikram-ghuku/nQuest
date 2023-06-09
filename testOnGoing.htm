@@ -1,15 +1,14 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
         <title>Test On Going</title>
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <link rel="stylesheet" type="text/css" href="css/testOnGoing.css">
         <script type="module" src="js/testOnGoing.js"></script>
         <script>
-            // document.onkeydown = function (e) {
-            //     return false;
-            // }
+            
 
             function  section_act(x){
                 var grp_btns = document.getElementsByClassName("grp_btn")
@@ -102,6 +101,8 @@
 
             function showQuestion(act_grp, act_sec, q_no){
 
+
+
                 qpaper = localStorage.getItem("qpaper")
                 qpaper = JSON.parse(qpaper)
                 con_check_1 = !qpaper.data[act_grp].sections[act_sec].viewed.includes(parseInt(q_no))
@@ -138,6 +139,7 @@
                 " Of section: "
                 +qpaper.data[act_grp].sections[act_sec].section+
                 " With Question number: "+(parseInt(q_no)+1)
+                +" Mathjax testing: "+"\\(ax^2 + bx + c = 0\\)"
 
                 var response_divs = ""
                 
@@ -192,10 +194,10 @@
 
                 document.getElementsByClassName("response")[0].innerHTML = response_divs
                 
-
+                
                 //Handle click of save and next
                 document.getElementsByClassName("next")[0].onclick = () => {
-                    
+                    //store data for radio and checkbox
                     x = qpaper.data[act_grp].sections[act_sec].viewed
 
                     var ele = document.getElementsByName("question_"+act_grp+"_"+act_sec+"_"+q_no)
@@ -210,8 +212,16 @@
                         }
                     }
                     else{
-                        resp = ele[0].value
-                        checked = true
+                        //store data for numeric datatype with min and max value
+                        if(parseInt(ele[0].value)<parseInt(ele[0].max) && parseInt(ele[0].value)>parseInt(ele[0].min)){
+                            resp = ele[0].value
+                            checked = true
+
+                        }
+                        else{
+                            
+                            alert("Please enter a value within the limit in question no: "+(parseInt(q_no)+1)+ " Response not recorded")
+                        }
                     }
 
                     if(checked){
@@ -371,10 +381,11 @@
                     qpaper = localStorage.getItem("qpaper")
                     qpaper = JSON.parse(qpaper)    
                     Array.from(document.querySelectorAll('.watermarked')).forEach(function(el) {
-                        el.dataset.watermark = (qpaper.user_id+ '  ').repeat(10000);
+                        el.dataset.watermark = (qpaper.user_id+ '  ').repeat(500);
                     });
                  </script>
                 <div class="question"></div>
+                <div class="alert_div" role="alert"></div>
                 <div class="response"></div>
                 
             </div>
