@@ -146,10 +146,10 @@
                 document.getElementsByClassName("question")[0].innerHTML = qpaper_ques[index].question //question loaded here
 
                 var response_divs = ""
-                
                 var num_opt = parseInt(qpaper.data[act_grp].sections[act_sec].num_opt)
                 if(qpaper.data[act_grp].sections[act_sec].q_type=="SMCQ"){
                     for(i=0; i<num_opt; i++){
+
                         response_divs+="<div class=\"opt_divs\"><input type=\"radio\" name=\"question_"
                             +act_grp+"_"+act_sec+"_"+q_no+
                             "\" id=\"opt_"
@@ -176,6 +176,25 @@
                             "\" required></div>"
                 }
 
+                document.getElementsByClassName("response")[0].innerHTML = response_divs
+
+                resp_stored = JSON.parse(localStorage.getItem("response"))
+                for(i=0; i<resp_stored.length; i++){
+                    if(resp_stored[i].id == act_grp+"_"+act_sec+"_"+q_no){
+                        resp_store_got = resp_stored[i].value.split(", ")
+                        console.log(resp_store_got)
+                        resp_store_got.forEach((item)=>{
+
+                            if(item.startsWith("opt")){
+                                document.getElementById(item).checked=true
+                            }
+                            else{
+                                document.getElementsByName("question_"+act_grp+"_"+act_sec+"_"+q_no)[0].value = item
+                            }
+                        })
+                    }
+                }
+
                 // handle click of clear response
                 document.getElementsByClassName("clr_res")[0].onclick = () => {
                     for(i=0; i<qpaper.data[act_grp].sections[act_sec].num_opt; i++){
@@ -196,7 +215,7 @@
 
                 }
 
-                document.getElementsByClassName("response")[0].innerHTML = response_divs
+                
                 
                 
                 //Handle click of save and next
