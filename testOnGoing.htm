@@ -100,8 +100,11 @@
             
 
             function showQuestion(act_grp, act_sec, q_no){
+                
+                MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+                MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 
-
+                qpaper_ques = JSON.parse(localStorage.getItem("questions"))
 
                 qpaper = localStorage.getItem("qpaper")
                 qpaper = JSON.parse(qpaper)
@@ -132,14 +135,15 @@
                 document.getElementsByClassName("mfr")[0].innerHTML = num_mfr
                 document.getElementsByClassName("amfr")[0].innerHTML = num_amfr
                 
-
+                var index = 0
+                ques_id_qpaper = qpaper.data[act_grp].sections[act_sec].questions[q_no]
+                for(i=0; i<qpaper_ques.length; i++){
+                    if(qpaper_ques[i].id==ques_id_qpaper){
+                        index = i
+                    }
+                }
                 document.getElementsByClassName("q_no")[0].innerHTML = "Question No. "+(parseInt(q_no)+1)
-                document.getElementsByClassName("question")[0].innerHTML = "Question from: "
-                +qpaper.data[act_grp].group+
-                " Of section: "
-                +qpaper.data[act_grp].sections[act_sec].section+
-                " With Question number: "+(parseInt(q_no)+1)
-                +" Mathjax testing: "+"\\(ax^2 + bx + c = 0\\)"
+                document.getElementsByClassName("question")[0].innerHTML = qpaper_ques[index].question //question loaded here
 
                 var response_divs = ""
                 
@@ -151,7 +155,7 @@
                             "\" id=\"opt_"
                             +(i+1)+
                             "\" required>"
-                            +"option "+(i+1)+" of question "+(parseInt(q_no)+1)+
+                            +qpaper_ques[index].options[i]+
                             "</div>"
                     }
                 }
@@ -161,8 +165,8 @@
                             +act_grp+"_"+act_sec+"_"+q_no+
                             "\" id=\"opt_"
                             +(i+1)+
-                            "\" required>"
-                            +"option "+i+" of question "+q_no+
+                            "\">"
+                            +qpaper_ques[index].options[i]+
                             "</div>"
                     }
                 }
@@ -172,7 +176,7 @@
                             "\" required></div>"
                 }
 
-                // handle click of cleaer response
+                // handle click of clear response
                 document.getElementsByClassName("clr_res")[0].onclick = () => {
                     for(i=0; i<qpaper.data[act_grp].sections[act_sec].num_opt; i++){
                         document.getElementById("opt_"+(i+1)).checked = false
@@ -213,7 +217,7 @@
                     }
                     else{
                         //store data for numeric datatype with min and max value
-                        if(parseInt(ele[0].value)<parseInt(ele[0].max) && parseInt(ele[0].value)>parseInt(ele[0].min)){
+                        if(parseInt(ele[0].value)<=parseInt(ele[0].max) && parseInt(ele[0].value)>=parseInt(ele[0].min)){
                             resp = ele[0].value
                             checked = true
 

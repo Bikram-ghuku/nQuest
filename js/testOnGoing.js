@@ -1,11 +1,13 @@
-import qpaper from "./Qpaper.js";
+import qpaper from "./practice_question/Qpaper.js";
+import questions from "./practice_question/questions.js"
 
 
 
 
 var groups = qpaper.data
-localStorage.setItem("watermark_id", "Bikram Ghuku")
 localStorage.setItem("response", "[]")
+localStorage.setItem("questions", JSON.stringify(questions))
+localStorage.setItem("MathJax-Menu-Settings", JSON.stringify({"zoom":"DoubleClick","zscale":"400%","renderer":"SVG"}))
 localStorage.setItem("qpaper", JSON.stringify(qpaper))
 groups.forEach((item)=>{
     
