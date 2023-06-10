@@ -90,3 +90,11 @@ input{
 .btn_cont{
     padding-top: 5vh;
 }
+
+ .uname_contents{
+    display: inline-block
+} 
+
+.lab_contents, .sub_contents, .sys_contents{
+    display: inline-block;
+}
