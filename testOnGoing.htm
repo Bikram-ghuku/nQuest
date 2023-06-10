@@ -250,6 +250,8 @@
                     if(checked){
                         var resp_store = JSON.parse(localStorage.getItem("response"))
                         var data = new Object()
+                        data.ques = qpaper_ques[index].question
+                        data.opts = qpaper_ques[index].options
                         data.id = act_grp+"_"+act_sec+"_"+q_no
                         data.value = resp
                         if(resp_store.length!=0){
