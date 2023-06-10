@@ -7,6 +7,10 @@
         <title>Login to test system</title>
         <link rel="stylesheet" type="text/css" href="css/login.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script>
+            
+            
+        </script>
     </head>
     <body>
         <div class="top">Mock test</div>
@@ -16,28 +20,31 @@
                 <img src="./images/reg_photo.jpg" alt="Registration Photo" class="images">
             </div>
             <div class="info">
-                <div class="uname">Candidates Name: John Doe</div>
+                <div class="uname">Candidates Name: <font style="color: yellow" class="uname_contents">John Doe</font></div>
                 <div class="subject"></div>
-                <div class="lab">Lab: L001</div>
+                <div class="lab">Lab: <font style="color: yellow" class="lab_contents">L001</font></div>
+                <div class="subject">Subject: <font style="color: yellow" class="lab_contents">Mock</font></div>
             </div>
-            <div class="sys_no">System no: C001</div>
+            <div class="sys_no">System Name: <font style="color: yellow" class="sys_contents">C001</font></div>
+            
         </div>
         <div class="login_form">
             <div class="login_form_cont">
-                <form action="login.php" method="post">
+                <form action="login_ver.htm" method="post">
                     <div class="heading">Login</div>
-                    <div class="userid">
-                        <i class="fa-solid fa-user-tie"></i>
-                        <input type="text" name="uname" id="uname">
+                    <div class="inp_area">
+                        <div class="userid">
+                            <i class="fa-solid fa-user-tie"></i>
+                            <input type="text" name="uname" id="uname">
+                        </div>
+                        <div class="password">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" name="passwd" id="passwd">
+                        </div>
+                        <div class="btn_cont">
+                            <input type="submit" class="btn btn-info" value="Sign In" onclick="document.documentElement.requestFullscreen()">
+                        </div>
                     </div>
-                    <div class="password">
-                        <i class="fa-solid fa-lock"></i>
-                        <input type="password" name="passwd" id="passwd">
-                    </div>
-                    <div>
-                        <input type="submit" class="btn btn-info" value="Sign In">
-                    </div>
-
                 </form>
             </div>
         </div>
