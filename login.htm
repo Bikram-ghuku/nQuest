@@ -8,8 +8,22 @@
         <script type="module" src="js/login.js"></script>
         <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script>
+            function login(){
+                var uname = document.getElementById("uname").value
+                var passwd = document.getElementById("passwd")
+                var x = JSON.parse(localStorage.getItem("user_data"))
+                if(passwd.value == x.dob){
+                    passwd.disabled = true
+                    return true
+                }else{
+                    document.getElementsByClassName("msg_viewer")[0].innerHTML = "<div style=\"color: red\">Login not allowed</div>"
+                    return false
+                }
+            }
+        </script>
     </head>
-    <body>
+    <body oncontextmenu="return false;">
         <div class="top">Mock test</div>
         <div class="user_assigned">
             <div class="profile">
@@ -42,7 +56,7 @@
         </div>
         <div class="login_form">
             <div class="login_form_cont">
-                <form action="./login_ver.htm" type="post">
+                <form action="./login_ver.htm" type="post" onsubmit="return login()">
                     <div class="heading">Login</div>
                     <div class="inp_area">
                         <div class="userid">
@@ -53,6 +67,7 @@
                             <i class="fa-solid fa-lock"></i>
                             <input type="password" name="passwd" id="passwd" required>
                         </div>
+                        <div class="msg_viewer"></div>
                         <div class="btn_cont">
                             <input type="submit" class="btn btn-info" value="Sign In" required>
                         </div>

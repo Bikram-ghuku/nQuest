@@ -28,6 +28,9 @@ img{
     background-color: #c1e8f6;
     height: 5vh;
     width: 85vw;
+    color:gray;
+    font-size: 3vh;
+    font-weight: bold;
 }
 
 .ins{
@@ -54,4 +57,10 @@ img{
     width: 83vw;
     padding-top: 2vh;
     padding-right: 2vw;
+}
+
+.u_name{
+    font-weight: bolder;
+    padding-top: 5vh;
+    font-size: 3vh;
 }
