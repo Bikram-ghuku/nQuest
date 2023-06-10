@@ -401,10 +401,9 @@
             <div class="q_area">
                 <div class="watermarked" data-watermark=""></div>
                 <script> 
-                    qpaper = localStorage.getItem("qpaper")
-                    qpaper = JSON.parse(qpaper)    
+                    x = JSON.parse(localStorage.getItem("user_data"))  
                     Array.from(document.querySelectorAll('.watermarked')).forEach(function(el) {
-                        el.dataset.watermark = (qpaper.user_id+ '  ').repeat(500);
+                        el.dataset.watermark = (x.id_no+ '  ').repeat(500);
                     });
                  </script>
                 <div class="question"></div>
