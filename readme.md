@@ -9,9 +9,9 @@
 
 <table>
     <th>Qtype</th>
-    <tr>Single Correct MCQ</tr>
-    <tr>Multi Correct MCQ</tr>
-    <tr>Integer type answer</tr>
+    <tr><td>Single Correct MCQ</td></tr>
+    <tr><td>Multi Correct MCQ</td></tr>
+    <tr><td>Integer type answer</td></tr>
 </table>
 
 ### Screenshots
