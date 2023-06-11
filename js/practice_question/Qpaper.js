@@ -2,7 +2,7 @@ const qpaper= {
 
     user_id: "23045662",
     lfq: true,
-    timer: 300,
+    timer: 30,
     id: "test_pap_1",
     data:
     [{

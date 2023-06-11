@@ -14,6 +14,7 @@
                 var passwd = document.getElementById("passwd")
                 var x = JSON.parse(localStorage.getItem("user_data"))
                 if(passwd.value == x.dob){
+                    passwd.value=""
                     passwd.disabled = true
                     return true
                 }else{

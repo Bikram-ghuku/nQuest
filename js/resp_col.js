@@ -1,8 +1,6 @@
 var x = document.getElementsByClassName("main_table")[0]
 
 var qpaper = JSON.parse(localStorage.getItem("qpaper"))
-
-console.log(x)
 var grp_num = qpaper.data.length
 var tab_height = Math.floor((100-10*grp_num)/grp_num)
 qpaper.data.forEach((items) => {
@@ -55,9 +53,14 @@ qpaper.data.forEach((items) => {
 x.style="display: none"
 
 var now = new Date().getTime()
+
 if((parseInt(localStorage.getItem("ending")) - now) > 0){
     document.getElementById("back_btn").style = ""
     document.getElementById("back_btn").onclick = ()=>{
         document.location = "./testOnGoing.htm"
     }
+}
+
+document.getElementById("confirm_btn").onclick = ()=>{
+    console.log("quit")
 }
