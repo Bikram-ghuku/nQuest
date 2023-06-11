@@ -326,7 +326,7 @@
                     section_act(0)
                 }
 
-                var end = new Date().getTime()+parseInt(qpaper.timer)*1000
+                var end = parseInt(localStorage.getItem("ending"))
 
                 setInterval(()=>{
                     var now = new Date().getTime()
@@ -340,11 +340,16 @@
                     else{
                         document.getElementsByClassName("Timer")[0].innerHTML = "Time Left: <font style=\"color:red;\">"+minutes+":"+seconds
                     }
+                    if(distance<=0){
+                        document.getElementsByClassName("submit")[0].click()
+                    }
 
                 }, 1000)
             }
             
-            
+            function submit_resp(){
+                document.location = "./response_collect.htm"
+            }
 
 
         </script>
@@ -378,7 +383,7 @@
             <div class="sep_top_bot"></div>
             <div class="navigation"></div>
             <div class="btn_cont">
-                <button class="submit">SUBMIT</button>
+                <button class="submit" onclick="submit_resp()">SUBMIT</button>
             </div>
         </div>
         <div class="main_area">

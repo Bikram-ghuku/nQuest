@@ -1,14 +1,8 @@
-import qpaper from "./practice_question/Qpaper.js";
-import questions from "./practice_question/questions.js"
 
 
-
-
+var qpaper = JSON.parse(localStorage.getItem("qpaper"))
 var groups = qpaper.data
-localStorage.setItem("response", "[]")
-localStorage.setItem("questions", JSON.stringify(questions))
-localStorage.setItem("MathJax-Menu-Settings", JSON.stringify({"zoom":"DoubleClick","zscale":"400%","renderer":"SVG"}))
-localStorage.setItem("qpaper", JSON.stringify(qpaper))
+
 groups.forEach((item)=>{
     
     var x = document.getElementsByClassName("groups")[0]

@@ -256,6 +256,7 @@ body{
     background-image: url(../images/amfr.png);
     background-size: 20px;
     background-repeat: no-repeat;
+    grid-column: span 2;
     width: 20px;
     height: 20px;
 }
