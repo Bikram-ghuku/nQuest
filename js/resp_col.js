@@ -63,4 +63,12 @@ if((parseInt(localStorage.getItem("ending")) - now) > 0){
 
 document.getElementById("confirm_btn").onclick = ()=>{
     console.log("quit")
+    var user = JSON.parse(localStorage.getItem("user_data"))
+
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(localStorage.getItem("response"));
+    var dlAnchorElem = document.getElementById('downloadAnchorElem');
+    dlAnchorElem.setAttribute("href", dataStr);
+    dlAnchorElem.setAttribute("download", user.id_no+".json");
+    dlAnchorElem.click();
 }
+
