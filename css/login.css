@@ -98,3 +98,10 @@ input{
 .lab_contents, .sub_contents, .sys_contents{
     display: inline-block;
 }
+
+.ws_info{
+    padding-top: 3vh;
+    color: white;
+    font-size: 3vh;
+    width: 35vw;
+}
