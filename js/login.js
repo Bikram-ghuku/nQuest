@@ -3,6 +3,7 @@ const urlParams = new URLSearchParams(queryString);
 const sys_no = urlParams.get('sys_no')
 const lab_no = urlParams.get('lab_no')
 
+document.getElementsByClassName("top")[0].innerHTML = ""
 
 
 if(!JSON.parse(localStorage.getItem("user_data"))){
@@ -12,6 +13,7 @@ if(!JSON.parse(localStorage.getItem("user_data"))){
     var x = JSON.parse(localStorage.getItem("user_data"))
     document.getElementsByClassName("uname_contents")[0].innerHTML = x.user
     document.getElementById("uname").value = x.id_no
+    document.getElementsByClassName("top")[0].innerHTML = x.exam_name
     $("#uname").prop("readonly", true);
 }
 document.getElementsByClassName("lab_contents")[0].innerHTML = lab_no
@@ -22,11 +24,10 @@ setInterval(()=>{
         location.reload()
         $.ajax({
             type:"GET",
-            cors: true,
-            url: "http://localhost/nQuest_server/sys_assign_rec.php",
+			cache: false,
+            url: "http://192.168.0.104/nQuest_server/sys_assign_rec.php?sys_no="+sys_no+"&lab_no="+lab_no,
             success: (data)=>{
                 data = JSON.parse(data)
-                console.log(data)
                 for(var i=0; i<data.length; i++){
                     if(data[i].system_id==sys_no){
                         localStorage.setItem("user_data", JSON.stringify(data[i]))
