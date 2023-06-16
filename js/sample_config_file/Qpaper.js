@@ -19,7 +19,8 @@ const qpaper= {
             answered:[],
             viewed: [],
             mfr:[],
-            amfr: []
+            amfr: [],
+			questions: ['001', '002', '003', '004', '005', '001', '002', '003', '004', '005', '001', '002', '003', '004', '005', '001', '002', '003', '004', '005']
         },
         {
             section_info: 90000002,
@@ -32,7 +33,8 @@ const qpaper= {
             answered: [],
             viewed: [],
             mfr:[],
-            amfr: []
+            amfr: [],
+            questions: ['006', '007', '006', '007', '006', '007', '006']
 
         },
         {
@@ -46,7 +48,8 @@ const qpaper= {
             answered: [],
             viewed: [],
             mfr:[],
-            amfr: []
+            amfr: [],
+            questions: ['001', '002', '003']
         }]
 
     },
@@ -64,7 +67,8 @@ const qpaper= {
             answered: [],
             viewed: [],
             mfr:[],
-            amfr: []
+            amfr: [],
+			questions: ['001', '002', '003', '004', '005', '001', '002', '003', '004', '005', '001', '002', '003', '004', '005', '001', '002', '003', '004', '005']
         },
         {   
             section_info: 90000002,
@@ -77,7 +81,8 @@ const qpaper= {
             answered: [],
             viewed: [],
             mfr:[],
-            amfr: []
+            amfr: [],
+            questions: ['006', '007', '006', '007', '006', '007', '006']
 
         },
         {   
@@ -91,7 +96,8 @@ const qpaper= {
             answered: [],
             viewed: [],
             mfr:[],
-            amfr: []
+            amfr: [],
+            questions: ['001', '002', '003']
         }]
 
 

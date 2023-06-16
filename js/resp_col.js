@@ -64,10 +64,18 @@ if((parseInt(localStorage.getItem("ending")) - now) > 0){
 document.getElementById("confirm_btn").onclick = ()=>{
     console.log("quit")
     var user = JSON.parse(localStorage.getItem("user_data"))
-
-    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(localStorage.getItem("response"));
+    var resp = localStorage.getItem("response")
+    $.ajax({
+        type: "GET",
+        url: "http://localhost/nQuest_server/resp_coll.php?resp="+resp+"&user="+user.id_no,
+        success: (data)=>{
+            console.log(data)
+        }
+    })
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(resp);
     var dlAnchorElem = document.getElementById('downloadAnchorElem');
     dlAnchorElem.setAttribute("href", dataStr);
+    
     dlAnchorElem.setAttribute("download", user.id_no+".json");
     dlAnchorElem.click();
 }
