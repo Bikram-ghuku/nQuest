@@ -1,8 +1,6 @@
 const qpaper= {
-
-    user_id: "23045662",
     lfq: true,
-    timer: 30,
+    timer: 300,
     id: "test_pap_1",
     data:
     [{
@@ -12,6 +10,8 @@ const qpaper= {
             section_info: 90000001,
             section: "Computer Section 1",
             id: "cs_sec_1",
+            suf_ques: true,
+            suf_options: true,
             num_ques: 2,
             q_type: "SMCQ",
             num_opt: 4,
@@ -26,6 +26,8 @@ const qpaper= {
             section_info: 90000002,
             section: "Mathematics Section 1",
             id: "math_sec_2",
+            suf_ques: true,
+            suf_options: true,
             num_ques: 3,
             q_type: "MMCQ",
             num_opt: 4,
@@ -41,6 +43,7 @@ const qpaper= {
             section_info: 90000004,
             section: "Mathematics Section 2",
             id: "math_sec_3",
+            suf_ques: true,
             num_ques: 2,
             q_type: "integer",
             num_opt: 10,

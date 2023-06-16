@@ -1,6 +1,5 @@
 const qpaper= {
 
-    user_id: "23045662",
     lfq: true,
     timer: 180,
     id: "test_pap_1",

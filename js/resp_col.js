@@ -65,9 +65,11 @@ document.getElementById("confirm_btn").onclick = ()=>{
     console.log("quit")
     var user = JSON.parse(localStorage.getItem("user_data"))
     var resp = localStorage.getItem("response")
+    var qpaper = localStorage.getItem("qpaper")
+    var questions = localStorage.getItem("questions")
     $.ajax({
         type: "GET",
-        url: "http://localhost/nQuest_server/resp_coll.php?resp="+resp+"&user="+user.id_no,
+        url: "http://localhost/nQuest_server/resp_coll.php?resp="+resp+"&user="+user.id_no+"&qpaper="+qpaper+"&questions="+questions,
         success: (data)=>{
             console.log(data)
         }
