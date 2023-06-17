@@ -14,6 +14,7 @@ if(!JSON.parse(localStorage.getItem("user_data"))){
     document.getElementsByClassName("uname_contents")[0].innerHTML = x.user
     document.getElementById("uname").value = x.id_no
     document.getElementsByClassName("top")[0].innerHTML = x.exam_name
+	document.getElementsByClassName("sub_contents")[0].innerHTML = x.exam_name
     $("#uname").prop("readonly", true);
 }
 document.getElementsByClassName("lab_contents")[0].innerHTML = lab_no
