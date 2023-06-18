@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <title>Instructions</title>
+        <link rel="stylesheet" type="text/css" href="css/info_pg_2.css">
+        <script type="module" src="js/info_pg_2.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script>
+            function start_qpaper(){
+                qpaper = JSON.parse(localStorage.getItem("qpaper"))
+                document.location = "./testOnGoing.htm"
+                localStorage.setItem("ending", new Date().getTime()+parseInt(qpaper.timer)*1000)  
+            }
+        </script>
+    </head>
+    <body id="body" oncontextmenu="return false;">
+        <div class="top"></div>
+        <div class="right">
+            <div class="img_cont">
+                <img src="./images/app_photo.jpg">
+                <div class="u_name"></div>
+                <div class="ins_timer"></div>
+            </div>
+            
+        </div>
+        <div class="left">
+            <div class="ltop">Other Important Instructions</div>
+            <div class="ins">
+                Too lazy to type instructions
+            </div>
+            <div class="bottom">
+                <div class="accept">
+                    <div class="lang_sel">
+                        Choose your default language: <select class="lang_opt"></select>
+                    </div>
+                    <div class="ter_acpt">
+                        <input type="checkbox" id="ac_cbox" onclick="term_accept()">
+                        I have read and understood the instructions. All computer hardware allotted to me is in proper working condition.
+                        I declare that I am not in possesion of/not wearing/not carrying any prohibited gadget like mobile phone, bluetooth device etc.
+                        /any prohibited material with me into the Examination Hall. I agree that in case of not adhering to the Instructions. I shall be liable to be
+                        debarred from this Test and/or to disciplinary action. which may include ban from future Tests/Examinations.
+                    </div>
+                </div>
+                <div class="btn_cont">
+                    <button class="btn btn-primary btn_cent" onclick="start_qpaper()" disabled>I am ready to begin 
+                    </button>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        qpaper = JSON.parse(localStorage.getItem("qpaper"))
+        qpaper.lang.forEach((item) => {
+            document.getElementsByClassName("lang_opt")[0].innerHTML+="<option value=\""+item+"\">"+item+"</option>";
+        });
+        if(localStorage.getItem("instructionEnd")){
+            var insEnd = parseInt(localStorage.getItem("instructionEnd"));
+            setInterval(()=>{
+            var now = new Date().getTime()
+            var dist = insEnd - now
+            var dist = Math.floor(dist/1000)
+            var mins = Math.floor(dist/60)
+            var sec = Math.floor(dist%60)
+            var dis = mins+":"+sec
+            if(dist>=0){
+                document.getElementsByClassName("ins_timer")[0].innerHTML = "<font style=\"color:red\">"+dis+"</font>"
+            }else{
+                document.getElementsByClassName("ins_timer")[0].innerHTML = ""
+            }
+            }, 1000)
+        }
+
+        setInterval(()=>{
+            var now = new Date().getTime()
+            var insEnd = parseInt(localStorage.getItem("instructionEnd"));
+            var checkBox = document.getElementById("ac_cbox");
+            var timeRemain = insEnd - now
+            if(checkBox.checked && timeRemain<=0){
+                document.getElementsByClassName("btn_cent")[0].disabled = false;
+            }
+            else{
+                document.getElementsByClassName("btn_cent")[0].disabled = true;
+            }
+        }, 1000)
+    </script>
+</html>

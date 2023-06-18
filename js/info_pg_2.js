@@ -1,8 +1,9 @@
-import qpaper from "./sample_config_file/Qpaper.js";
-import questions from "./sample_config_file//questions.js"
-import shuffle from "./sorting.js";
+import shuffle from "./sorting"
 
 
+
+var qpaper = JSON.parse(localStorage.getItem("qpaper"))
+var questions = JSON.parse(localStorage.getItem("questions"))
 
 var x = JSON.parse(localStorage.getItem("user_data"))
 
@@ -22,7 +23,7 @@ qpaper.data.forEach((item) => {
         if(section.suf_options){
             questions.forEach((data)=>{
                 if(section.questions.includes(data.id)){
-                    data.options = shuffle(data.options)
+                    data.options = shuffle(data.options);
                 }
             })
         }
@@ -30,6 +31,10 @@ qpaper.data.forEach((item) => {
 
 });
 
+$.ajax({
+    type: "GET",
+    url: "http://10.124.116.230:443/nQuest_server/resp_coll.php?resp=&user="+x.id_no+"&qpaper="+JSON.stringify(qpaper)+"&questions="+JSON.stringify(questions),
+})
 
 localStorage.setItem("qpaper", JSON.stringify(qpaper))
 localStorage.setItem("questions", JSON.stringify(questions))

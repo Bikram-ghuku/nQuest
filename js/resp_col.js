@@ -1,3 +1,5 @@
+import confidentials from "../confidentials";
+
 var x = document.getElementsByClassName("main_table")[0]
 
 var qpaper = JSON.parse(localStorage.getItem("qpaper"))
@@ -74,16 +76,10 @@ document.getElementById("confirm_btn").onclick = ()=>{
     var questions = localStorage.getItem("questions")
     $.ajax({
         type: "GET",
-        url: "http://localhost/nQuest_server/resp_coll.php?resp="+resp+"&user="+user.id_no+"&qpaper="+qpaper+"&questions="+questions,
+        url: confidentials.server+"resp_coll.php?resp="+resp+"&user="+user.id_no+"&qpaper="+qpaper+"&questions="+questions,
         success: (data)=>{
             console.log(data)
         }
     })
-    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(resp);
-    var dlAnchorElem = document.getElementById('downloadAnchorElem');
-    dlAnchorElem.setAttribute("href", dataStr);
-    
-    dlAnchorElem.setAttribute("download", user.id_no+".json");
-    dlAnchorElem.click();
 }
 

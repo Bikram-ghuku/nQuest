@@ -1,3 +1,6 @@
+import confidentials from "../confidentials";
+
+
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const sys_no = urlParams.get('sys_no')
@@ -26,7 +29,7 @@ setInterval(()=>{
         $.ajax({
             type:"GET",
 			cache: false,
-            url: "http://192.168.0.104/nQuest_server/sys_assign_rec.php?sys_no="+sys_no+"&lab_no="+lab_no,
+            url: confidentials.server+"sys_assign_rec.php?sys_no="+sys_no+"&lab_no="+lab_no,
             success: (data)=>{
                 data = JSON.parse(data)
                 for(var i=0; i<data.length; i++){

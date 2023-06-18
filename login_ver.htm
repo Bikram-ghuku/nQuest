@@ -11,8 +11,13 @@
         <script>
             function start_qpaper(){
                 qpaper = JSON.parse(localStorage.getItem("qpaper"))
-                document.location = "./testOnGoing.htm"
-                localStorage.setItem("ending", new Date().getTime()+parseInt(qpaper.timer)*1000)
+                document.location = "./info_pg_2.htm"
+                if(qpaper.instructionTimer){
+                    var now = new Date().getTime() + parseInt(qpaper.instructionTimer)*1000
+                    if(!localStorage.getItem("instructionEnd")){
+                        localStorage.setItem("instructionEnd", now);
+                    }
+                }
             }
         </script>
     </head>
@@ -31,7 +36,7 @@
             </div>
             <div class="bottom">
                 <div class="btn_cont">
-                    <button class="btn btn-light btn_right" onclick="start_qpaper()">Begin Exam
+                    <button class="btn btn-light btn_right" onclick="start_qpaper()">Next
                         <i class="fa-solid fa-chevron-right"></i>
                     </button>
                 </div>

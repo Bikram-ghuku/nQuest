@@ -2,6 +2,7 @@ const qpaper= {
     lfq: true,
     timer: 300,
     id: "test_pap_1",
+    lang:["English", "Hindi"],
     data:
     [{
         group: "Mock Test 1",

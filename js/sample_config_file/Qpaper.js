@@ -3,6 +3,8 @@ const qpaper= {
     lfq: true,
     timer: 180,
     id: "test_pap_1",
+    instructionTimer: 60,
+    lang:["English", "Hindi"],
     data:
     [{
         group: "Physics Quiz Main",
