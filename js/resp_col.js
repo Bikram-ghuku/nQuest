@@ -1,4 +1,4 @@
-import confidentials from "../confidentials";
+import confidentials from "../confidentials.js";
 
 var x = document.getElementsByClassName("main_table")[0]
 

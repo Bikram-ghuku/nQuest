@@ -1,4 +1,4 @@
-import confidentials from "../confidentials";
+import confidentials from "../confidentials.js";
 
 
 const queryString = window.location.search;
