@@ -1,5 +1,5 @@
-import qpaper from "./sample_config_file/Qpaper.js";
-import questions from "./sample_config_file/questions.js"
+import qpaper from "./practice_question/Qpaper.js";
+import questions from "./practice_question/questions.js"
 
 
 
@@ -14,8 +14,6 @@ localStorage.setItem("MathJax-Menu-Settings", JSON.stringify({"zoom":"DoubleClic
 
 function shuffle(array) {
     for (var i = array.length - 1; i > 0; i--) { 
-   
-        // Generate random number 
         var j = Math.floor(Math.random() * (i + 1));
                    
         var temp = array[i];
