@@ -69,6 +69,7 @@ if((parseInt(localStorage.getItem("ending")) - now) > 0){
 }
 
 document.getElementById("confirm_btn").onclick = ()=>{
+
     console.log("quit")
     var user = JSON.parse(localStorage.getItem("user_data"))
     var resp = localStorage.getItem("response")
@@ -81,5 +82,12 @@ document.getElementById("confirm_btn").onclick = ()=>{
             console.log(data)
         }
     })
+
+    localStorage.removeItem("response")
+    localStorage.removeItem("qpaper")
+    localStorage.removeItem("questions")
+    localStorage.removeItem("ending")
+    document.location = "./login.htm?sys_no="+user.system_id+"&lab_no="+user.lab_no
+    localStorage.removeItem("user_data")
 }
 

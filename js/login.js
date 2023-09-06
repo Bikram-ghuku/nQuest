@@ -29,7 +29,7 @@ setInterval(()=>{
         $.ajax({
             type:"GET",
 			cache: false,
-            url: confidentials.server+"sys_assign_rec.php?sys_no="+sys_no+"&lab_no="+lab_no,
+            url: "http://"+confidentials.server+"/sys_assign_rec.php?sys_no="+sys_no+"&lab_no="+lab_no,
             success: (data)=>{
                 data = JSON.parse(data)
                 for(var i=0; i<data.length; i++){

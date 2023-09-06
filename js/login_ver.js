@@ -1,5 +1,5 @@
-import qpaper from "./practice_question/Qpaper.js";
-import questions from "./practice_question/questions.js"
+import qpaper from "./sample_config_file/Qpaper.js";
+import questions from "./sample_config_file/questions.js"
 
 
 

@@ -34,7 +34,9 @@
             <div class="bottom">
                 <div class="accept">
                     <div class="lang_sel">
-                        Choose your default language: <select class="lang_opt"></select>
+                        Choose your default language: <select class="lang_opt">
+                            <option value="None">--select--</option>
+                        </select>
                     </div>
                     <div class="ter_acpt">
                         <input type="checkbox" id="ac_cbox">
@@ -76,9 +78,10 @@
         setInterval(()=>{
             var now = new Date().getTime()
             var insEnd = parseInt(localStorage.getItem("instructionEnd"));
+            var langOpt = document.getElementsByClassName("lang_opt")[0].value;
             var checkBox = document.getElementById("ac_cbox");
             var timeRemain = insEnd - now
-            if(checkBox.checked && timeRemain<=0){
+            if(checkBox.checked && timeRemain<=0 && langOpt!="None"){
                 document.getElementsByClassName("btn_cent")[0].disabled = false;
             }
             else{
