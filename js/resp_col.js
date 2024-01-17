@@ -69,25 +69,30 @@ if((parseInt(localStorage.getItem("ending")) - now) > 0){
 }
 
 document.getElementById("confirm_btn").onclick = ()=>{
-
-    console.log("quit")
     var user = JSON.parse(localStorage.getItem("user_data"))
     var resp = localStorage.getItem("response")
     var qpaper = localStorage.getItem("qpaper")
     var questions = localStorage.getItem("questions")
-    $.ajax({
-        type: "GET",
-        url: confidentials.server+"resp_coll.php?resp="+resp+"&user="+user.id_no+"&qpaper="+qpaper+"&questions="+questions,
-        success: (data)=>{
-            console.log(data)
-        }
+    fetch('http://localhost:4000/api/submit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            "sys_no": user.system_id,
+            "lab_no": user.lab_no,
+            "qpaper": qpaper,
+            "questions": questions,
+            "response": resp
+        })
     })
 
     localStorage.removeItem("response")
     localStorage.removeItem("qpaper")
     localStorage.removeItem("questions")
     localStorage.removeItem("ending")
-    document.location = "./login.htm?sys_no="+user.system_id+"&lab_no="+user.lab_no
     localStorage.removeItem("user_data")
+    console.log("done")
+    document.location = "./login.htm?sys_no="+user.system_id+"&lab_no="+user.lab_no
 }
 
