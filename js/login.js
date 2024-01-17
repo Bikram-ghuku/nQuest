@@ -10,7 +10,11 @@ var sys_no = urlParams.get('sys_no')
 var lab_no = urlParams.get('lab_no')
 
 socket.on('connect', () => {
-    socket.emit('system_online', {sys_no, lab_no, socket_id: socket.id})
+    socket.emit('system_online', {sys_no, lab_no, socket_id: socket.id, type: 'examSys'})
+});
+
+socket.on('alertMsg', (data) => {
+    alert(data)
 });
 
 socket.on('userData', (data) => {
