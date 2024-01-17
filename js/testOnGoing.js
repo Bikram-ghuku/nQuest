@@ -1,10 +1,14 @@
-const socket = io.connect('http://localhost:3000');
+const socket = io.connect('http://localhost:4000');
 
 socket.on('connect', () => {
     console.log("Connected", socket.id)
     socket.emit('system_online', {sys_no : x.system_id, lab_no: x.lab_no, socket_id: socket.id, type: 'examSys'})
     socket.emit('status', {sys_no : x.sys_no, lab_no: x.lab_no, socket_id: socket.id, type: 'examSys', status: 'examStart'});
 });
+
+socket.on("alertMsg", (data)=>{
+    alert(data)
+})
 
 var qpaper = JSON.parse(localStorage.getItem("qpaper"))
 var groups = qpaper.data
