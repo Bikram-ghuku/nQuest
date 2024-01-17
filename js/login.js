@@ -17,6 +17,8 @@ socket.on('alertMsg', (data) => {
     alert(data)
 });
 
+socket.emit('status', {sys_no : x.sys_no, lab_no: x.lab_no, socket_id: socket.id, type: 'examSys', status: 'infoPg'});
+
 socket.on('userData', (data) => {
     console.log(data)
     const x = data
