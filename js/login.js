@@ -1,10 +1,17 @@
 import confidentials from "../confidentials.js";
 import offuser from "../offline.js";
+const socket = io('http://localhost:4000');
+
+
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 var sys_no = urlParams.get('sys_no')
 var lab_no = urlParams.get('lab_no')
+
+socket.on('connect', () => {
+    socket.emit('system_online', {sys_no, lab_no, socket_id: socket.id})
+});
 
 document.getElementsByClassName("top")[0].innerHTML = ""
 if(!sys_no && !lab_no){
@@ -29,20 +36,8 @@ document.getElementsByClassName("sys_contents")[0].innerHTML = sys_no
 
 setInterval(()=>{
     if(!localStorage.getItem("user_data")){
-        location.reload()
-        $.ajax({
-            type:"GET",
-			cache: false,
-            url: "http://"+confidentials.server+"/sys_assign_rec.php?sys_no="+sys_no+"&lab_no="+lab_no,
-            success: (data)=>{
-                data = JSON.parse(data)
-                for(var i=0; i<data.length; i++){
-                    if(data[i].system_id==sys_no){
-                        localStorage.setItem("user_data", JSON.stringify(data[i]))
-                    }
-                }
-            }
-        })
+        // location.reload()
+        
     }
 
 
