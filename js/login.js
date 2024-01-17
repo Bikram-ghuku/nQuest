@@ -17,10 +17,10 @@ socket.on('alertMsg', (data) => {
     alert(data)
 });
 
-socket.emit('status', {sys_no : x.sys_no, lab_no: x.lab_no, socket_id: socket.id, type: 'examSys', status: 'infoPg'});
 
 socket.on('userData', (data) => {
     console.log(data)
+    localStorage.setItem("user_data", JSON.stringify(data))
     const x = data
     document.getElementsByClassName("user_assigned")[0].style = "display:block"
     document.getElementsByClassName("login_form")[0].style= "height: 70vh; padding: 10vh;"
