@@ -2,11 +2,24 @@ import confidentials from "../confidentials.js"
 
 var qpaper = JSON.parse(localStorage.getItem("qpaper"))
 var questions = JSON.parse(localStorage.getItem("questions"))
+const socket = io('http://localhost:4000');
 
 localStorage.removeItem("qpaper")
 localStorage.removeItem("questions")
 
 var x = JSON.parse(localStorage.getItem("user_data"))
+
+socket.on('connect', () => {
+    console.log("Connected", socket.id)
+    socket.emit('system_online', {sys_no : x.system_id, lab_no: x.lab_no, socket_id: socket.id, type: 'examSys'})
+    socket.emit('status', {sys_no : x.sys_no, lab_no: x.lab_no, socket_id: socket.id, type: 'examSys', status: 'infoPg2'});
+});
+
+socket.on('alertMsg', (data) => {
+    alert(data)
+});
+
+x
 
 document.getElementsByClassName("u_name")[0].innerHTML = x.user
 
