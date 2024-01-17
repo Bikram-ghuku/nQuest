@@ -78,7 +78,7 @@ img{
     height: 8vh;
     overflow-y: auto;
     overflow-x: hidden;
-    font-size: 12px;
+    font-size: 2vh;
 }
 
 .lang_sel{
@@ -86,5 +86,5 @@ img{
 }
 
 .ac_cbox{
-    font-size: 2vh;
+    font-size: 4vh;
 }

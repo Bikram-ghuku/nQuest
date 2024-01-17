@@ -1,13 +1,17 @@
 import confidentials from "../confidentials.js";
-
+import offuser from "../offline.js";
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const sys_no = urlParams.get('sys_no')
-const lab_no = urlParams.get('lab_no')
+var sys_no = urlParams.get('sys_no')
+var lab_no = urlParams.get('lab_no')
 
 document.getElementsByClassName("top")[0].innerHTML = ""
-
+if(!sys_no && !lab_no){
+    localStorage.setItem("user_data", JSON.stringify(offuser))
+    lab_no = offuser.lab_no
+    sys_no = offuser.system_id
+}
 
 if(!JSON.parse(localStorage.getItem("user_data"))){
     document.getElementsByClassName("user_assigned")[0].style = "display:none"
