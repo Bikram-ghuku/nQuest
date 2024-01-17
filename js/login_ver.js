@@ -1,9 +1,20 @@
 import qpaper from "./sample_config_file/Qpaper.js";
 import questions from "./sample_config_file/questions.js"
+const socket = io("http://localhost:4000");
 
 
 
 var x = JSON.parse(localStorage.getItem("user_data"))
+
+socket.on('connect', () => {
+    socket.emit('system_online', {sys_no : x.sys_no, lab_no: x.lab_no, socket_id: socket.id, type: 'examSys'})
+});
+
+socket.on('alertMsg', (data) => {
+    alert(data)
+});
+
+socket.emit('status', {sys_no : x.sys_no, lab_no: x.lab_no, socket_id: socket.id, type: 'examSys', status: 'infoPg'});
 
 document.getElementsByClassName("u_name")[0].innerHTML = x.user
 
