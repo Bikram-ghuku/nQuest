@@ -2,7 +2,7 @@ import confidentials from "../confidentials.js"
 
 var qpaper = JSON.parse(localStorage.getItem("qpaper"))
 var questions = JSON.parse(localStorage.getItem("questions"))
-const socket = io('http://localhost:4000');
+const socket = io(confidentials.server);
 
 localStorage.removeItem("qpaper")
 localStorage.removeItem("questions")

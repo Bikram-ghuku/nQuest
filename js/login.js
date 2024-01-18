@@ -1,6 +1,6 @@
 import confidentials from "../confidentials.js";
 import offuser from "../offline.js";
-const socket = io('http://localhost:4000');
+const socket = io(confidentials.server);
 
 
 

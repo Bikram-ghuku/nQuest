@@ -1,6 +1,7 @@
+import confidentials from "../confidentials.js";
 import qpaper from "./sample_config_file/Qpaper.js";
 import questions from "./sample_config_file/questions.js"
-const socket = io("http://localhost:4000");
+const socket = io(confidentials.server);
 
 
 
