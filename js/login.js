@@ -14,8 +14,22 @@ socket.on('connect', () => {
 });
 
 socket.on('alertMsg', (data) => {
-    alert(data)
+    document.getElementById("modalBodyText").innerHTML = data
+    document.getElementById("myModal").style.display = "block"
 });
+
+var span = document.getElementsByClassName("close")[0];
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+var modal = document.getElementById("myModal");
+window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+}
 
 
 socket.on('userData', (data) => {

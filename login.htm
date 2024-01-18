@@ -14,7 +14,7 @@
                 var uname = document.getElementById("uname").value
                 var passwd = document.getElementById("passwd")
                 var x = JSON.parse(localStorage.getItem("user_data"))
-                if(passwd.value == x.dob){
+                if(passwd.value == x.dob && x.loginAllowed == true){
                     passwd.value=""
                     passwd.disabled = true
                     return true
@@ -57,7 +57,17 @@
             <div class="ws_info">
                 Contact Invigilator if the Name and Photograph displayed on the screen is not yours.
             </div>
-            
+        </div>
+        <div class="modal" id="myModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Message From Server</h5>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <p id="modalBodyText">Some text in the Modal Body</p>
+                </div>
+            </div>
         </div>
         <div class="login_form">
             <div class="login_form_cont">
