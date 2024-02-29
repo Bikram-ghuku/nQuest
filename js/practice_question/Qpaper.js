@@ -175,4 +175,6 @@ const qpaper= {
 ]
 }
 
+console.table(qpaper.data)
+
 export default qpaper;

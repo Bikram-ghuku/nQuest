@@ -6,7 +6,7 @@ const socket = io(confidentials.server);
 
 localStorage.removeItem("qpaper")
 localStorage.removeItem("questions")
-
+console.table(qpaper.data)
 var x = JSON.parse(localStorage.getItem("user_data"))
 
 socket.on('connect', () => {

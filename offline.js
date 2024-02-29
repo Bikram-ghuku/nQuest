@@ -4,7 +4,8 @@ const offuser = {
     "user": "student",
     "id_no": "56700786",
     "dob": "12345678",
-    "exam_name": "ONLINE EXAM"
+    "exam_name": "ONLINE EXAM",
+    "loginAllowed":true
 }
 
 export default offuser;
