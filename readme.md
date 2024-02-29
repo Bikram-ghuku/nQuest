@@ -30,3 +30,20 @@
 
 
 ##### Feel free to fork repo to make changes
+
+
+### Pull docker image to run it
+
+```cli
+docker pull bikramghuku05/nquest-docker
+```
+
+#### Run the container
+
+```cli
+docker run -p 3000:80 bikramghuku05/nquest-docker
+```
+
+#### Visit the app at
+
+<a href="http://www.localhost:3000/login.htm">http://www.localhost:3000login.htm</a>
