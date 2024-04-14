@@ -73,7 +73,7 @@ document.getElementById("confirm_btn").onclick = ()=>{
     var resp = localStorage.getItem("response")
     var qpaper = localStorage.getItem("qpaper")
     var questions = localStorage.getItem("questions")
-    fetch('http://localhost:4000/api/submit', {
+    fetch('http://localhost:4000/api/userData', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
